@@ -26,7 +26,7 @@ export class BookingModel {
     pickupAddress: string = null;
     destinationAddress: string = null;
     passengers: Number;
-    pickupDate: Date;
+    pickupDate: any;
     pickupTime: string;
     totalDistance: string;
 
