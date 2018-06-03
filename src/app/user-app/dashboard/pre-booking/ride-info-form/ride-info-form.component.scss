@@ -1,0 +1,38 @@
+.example-container>* {
+    width: 100%;
+}
+
+.input-full-width {
+    width: 100%;
+}
+
+.workBox {
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
+    padding: 2%;
+}
+
+.top-margin {
+    margin-top: 80px;
+}
+
+.bordrRight {
+    border-left: .5px solid;
+}
+
+.header {
+    background: wheat;
+    font-weight: 300;
+}
+
+.header:hover {
+    border-left: 7px red solid;
+    transition: border-left 200ms linear;
+}
+
+//Google map
+#map {
+    height: 100%;
+}
+.btn-primary {
+    background-color: #000000 !important;
+}

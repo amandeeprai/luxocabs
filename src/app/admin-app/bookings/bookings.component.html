@@ -1,0 +1,41 @@
+<app-alert></app-alert>
+<div class="container top-margin">
+<div class="table-container mat-elevation-z8">
+    <mat-table #table [dataSource]="dataSource">
+        <ng-container matColumnDef="_id">
+            <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element._id}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="pickupAddress">
+            <mat-header-cell *matHeaderCellDef> Falg Fall </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.pickupAddress}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="pickupDate">
+            <mat-header-cell *matHeaderCellDef> Distance Fare </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.pickupDate}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="stripeToken">
+            <mat-header-cell *matHeaderCellDef> Fare Type </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.stripeToken}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="operation">
+            <mat-header-cell *matHeaderCellDef> Operation </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                <button mat-icon-button (click)="editFare(element)"> 
+                  <mat-icon>edit</mat-icon>  
+                </button>
+            </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+    <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]">
+    </mat-paginator>
+</div>
+</div>

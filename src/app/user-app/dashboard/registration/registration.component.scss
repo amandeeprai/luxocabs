@@ -1,0 +1,35 @@
+.box{
+    padding: 2%;
+
+}
+.header{
+    font-weight: 400;
+    padding: 7px;
+    width: 100%;
+}
+.fullWidth{
+    width: 100%;
+}
+.closeButton{
+    background: transparent;
+    border: none;
+    color: black;
+    font-size: 30px;
+    float: right;
+    margin-top: -15px;
+    margin-right:-15px; 
+}
+.mat-dialog-content{
+        margin-top : 0px; 
+        max-height: 70vh;
+}
+.leftBox{
+    background: #f3f7f8;
+}
+
+.box{
+    padding-bottom: 2%;
+    padding-left: 4%;
+    padding-top: 1%;
+    padding-right: 4%;
+}

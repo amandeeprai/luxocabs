@@ -1,0 +1,119 @@
+.intro-2 {
+    background: url("https://mdbootstrap.com/img/Photos/Others/img%20(46).jpg")no-repeat center center;
+    background-size: cover;
+}
+
+.top-margin {
+    margin-top: 60px;
+}
+
+.view {
+    height: 100vh !important;
+}
+
+.top-nav-collapse {
+    background-color: #ff8a65 !important;
+}
+
+.navbar:not(.top-nav-collapse) {
+    background: transparent !important;
+}
+
+@media (max-width: 768px) {
+    .navbar:not(.top-nav-collapse) {
+        background: #ff8a65 !important;
+    }
+}
+
+.md-form .prefix {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+}
+
+h6 {
+    line-height: 1.7;
+}
+
+.silderHeight {
+    margin-top: 50px !important;
+}
+
+@media (max-width: 740px) {
+    .full-height,
+    .full-height body,
+    .full-height header,
+    .full-height header .view {
+        height: 1150px;
+    }
+    .silderHeight {
+        margin-top: 40px !important;
+    }
+}
+
+.workBox {
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
+}
+
+.workBoxPadding {
+    padding-top: 2em;
+    padding-bottom: 2em;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.example-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.example-container>* {
+    width: 100%;
+}
+
+input.example-right-align::-webkit-outer-spin-button,
+input.example-right-align::-webkit-inner-spin-button {
+    display: none;
+}
+
+.blogImage {
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
+}
+
+.blogBackground {
+    background: url('/assets/images/header.jpg') no-repeat;
+}
+
+.blogBackground2 {
+    background: #00000094;
+}
+
+.blogBackground2 h1 {
+    color: #fff;
+}
+
+.blogBackground2 h5 {
+    color: #fff;
+}
+
+.blogBackground2 p {
+    color: #fff;
+}
+
+.buttomBoder {
+    border-bottom: 4px solid black;
+}
+
+.buttomBoder:hover {
+    border-bottom: 4px solid yellow;
+}
+
+.blogBackground2:hover .buttomBoder {
+    border-bottom: 4px solid yellow;
+}
+.iconHeight{
+    height: 90px !important ;
+}
+
+.btn-primary {
+    background-color: #000000 !important;
+}

@@ -1,0 +1,57 @@
+/* Master Styles */
+
+@import '~@angular/material/theming';
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+@include mat-core();
+$primary: mat-palette($mat-blue,
+700);
+$accent: mat-palette($mat-pink);
+$theme: mat-light-theme($primary,
+$accent);
+@include angular-material-theme($theme);
+.dark-theme {
+    $dark-p: mat-palette($mat-pink, 700);
+    $dark-a: mat-palette($mat-blue-grey);
+    $dark-t: mat-dark-theme($dark-p, $dark-a);
+    @include angular-material-theme($dark-t);
+}
+@media(mix-width:768px){
+.myapp-no-padding-dialog .mat-dialog-container {
+    padding: 0 !important;
+    overflow-x: hidden;
+    z-index: 2;
+    width: 90%; 
+  }
+  .myapp-no-padding-dialog2 .mat-dialog-container {
+    padding: 0 !important;
+    overflow-x: hidden;
+    z-index: 2;
+    width: 90%; 
+  }
+
+
+}
+.myapp-no-padding-dialog .mat-dialog-container {
+    padding: 0 !important;
+    overflow: hidden;
+    z-index: 2;
+    width: 100%; 
+  }
+  .myapp-no-padding-dialog2 .mat-dialog-container {
+    padding: 0 !important;
+    overflow: hidden;
+    z-index: 2;
+    margin: 0 0px;
+    padding: 0 0px;
+    width: 100%; 
+  }
+  .myapp-no-padding-dialog3 .mat-dialog-container {
+    padding: 0 !important;
+    min-width: 460px;
+    background: #e7e5e5;
+    overflow: hidden;
+    z-index: 2;
+    margin: 0 0px;
+    padding: 0 0px;
+    width: 100%; 
+  }

@@ -1,0 +1,19 @@
+.top-margin {
+    margin-top: 80px;
+}
+.fa-star{
+    color: rgb(254, 185, 0) !important;
+}
+.listPadding{
+    padding-left: 5%;
+    padding-right: 5%; 
+}
+@media (max-width:768px){
+    .listPadding{
+        padding-left: 1%;
+        padding-right: 1%; 
+    }
+}
+.textLine {
+    text-align: justify;
+}  

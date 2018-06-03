@@ -1,0 +1,133 @@
+<header>
+    <app-loader [style.display]="isDisplay"></app-loader>
+    <mdb-sidenav #sidenav class="fixed black" [fixed]="true">
+        <li>
+            <div class="logo-wrapper waves-light " style="min-height: 100px;">
+                <a routerLink="/"><img src="assets/images/luxo-logo.png" height="80" class="img-fluid flex-center mb-5"></a>
+            </div>
+        </li>
+        <li>
+            <ul class="social">
+                <li><a href="https://www.facebook.com/luxurycabsservicesmelbourne/" class="icons-sm fb-ic"><i class="fa fa-facebook"> </i></a></li>
+                <li><a href="https://www.linkedin.com/in/luxo-cabs-a13823153/" class="icons-sm pin-ic"><i class="fa fa-linkedin"> </i></a></li>
+                <li><a href="https://plus.google.com/117709327860690118057" class="icons-sm gplus-ic"><i class="fa fa-google-plus"> </i></a></li>
+                <li><a href="https://twitter.com/Luxoqualitycabs" class="icons-sm tw-ic"><i class="fa fa-twitter"> </i></a></li>
+            </ul>
+        </li>
+        <li>
+            <ul class="collapsible collapsible-accordion">
+                <mdb-squeezebox [multiple]="false" aria-multiselectable="false">
+                    <div *ngIf="isLogin; then thb"></div>
+                    <ng-template #thb>
+                        <a>
+                            <mdb-item class="no-collase">
+                                <mdb-item-head mdbWavesEffect><i class="fa fa-user"></i> hii.. {{user}}
+                                </mdb-item-head>
+                            </mdb-item>
+                        </a>
+                    </ng-template>
+
+
+                    <a routerLink="/">
+                        <mdb-item class="no-collase">
+                            <mdb-item-head mdbWavesEffect><i class="fa fa-home"></i> Home</mdb-item-head>
+                            <mdb-item-body></mdb-item-body>
+                        </mdb-item>
+                    </a>
+                    <a routerLink="/about-us">
+                        <mdb-item class="no-collase">
+                            <mdb-item-head mdbWavesEffect>
+                                <i class="fa fa-exclamation"></i> About Us</mdb-item-head>
+                            <mdb-item-body></mdb-item-body>
+                        </mdb-item>
+                    </a>
+                    <a routerLink="/contact-us">
+                        <mdb-item class="no-collase">
+                            <mdb-item-head mdbWavesEffect><i class="fa fa-file-text-o"></i> Contact Us</mdb-item-head>
+                            <mdb-item-body></mdb-item-body>
+                        </mdb-item>
+                    </a>
+                    <a routerLink="/fleets">
+                        <mdb-item class="no-collase">
+                            <mdb-item-head mdbWavesEffect><i class="fa fa-taxi"></i> Fleets</mdb-item-head>
+                            <mdb-item-body></mdb-item-body>
+                        </mdb-item>
+                    </a>
+                    <div *ngIf="!isLogin; then es"></div>
+                    <ng-template #es>
+                        <a (click)="openLoginModal()">
+                            <mdb-item class="no-collase">
+                                <mdb-item-head mdbWavesEffect><i class="fa fa-sign-in"></i> Login</mdb-item-head>
+                                <mdb-item-body></mdb-item-body>
+                            </mdb-item>
+                        </a>
+                        <a (click)="openRegistrationModal()">
+                            <mdb-item class="no-collase">
+                                <mdb-item-head mdbWavesEffect> <i class="fa fa-user-plus"></i> Sign Up </mdb-item-head>
+                                <mdb-item-body></mdb-item-body>
+                            </mdb-item>
+                        </a>
+                    </ng-template>
+                    <a routerLink="/services">
+                        <mdb-item class="no-collase">
+                            <mdb-item-head mdbWavesEffect><i class="fa fa-cogs"></i> Services</mdb-item-head>
+                            <mdb-item-body></mdb-item-body>
+                        </mdb-item>
+                    </a>
+                    <a routerLink="/fqa">
+                        <mdb-item class="no-collase">
+                            <mdb-item-head mdbWavesEffect><i class="fa fa-quora"></i> FQA</mdb-item-head>
+                            <mdb-item-body></mdb-item-body>
+                        </mdb-item>
+                    </a>
+                    <a routerLink="/limo-services">
+                        <mdb-item class="no-collase">
+                            <mdb-item-head mdbWavesEffect><i class="fa fa-bus"></i> Limo Service</mdb-item-head>
+                            <mdb-item-body></mdb-item-body>
+                        </mdb-item>
+                    </a>
+                    <a routerLink="/airport-pickups">
+                        <mdb-item class="no-collase">
+                            <mdb-item-head mdbWavesEffect><i class="fa fa-plane"></i> Airport Service</mdb-item-head>
+                            <mdb-item-body></mdb-item-body>
+                        </mdb-item>
+                    </a>
+                </mdb-squeezebox>
+            </ul>
+        </li>
+        <div class="sidenav-bg mask-strong"></div>
+    </mdb-sidenav>
+    <mdb-navbar SideClass="navbar fixed-top navbar-expand-lg black navbar-dark scrolling-navbar " [containerInside]="false">
+        <logo>
+            <a (click)="sidenav.toggle()" height="40" class="logo navbar-brand mt-2 ml-2 waves-light wow rotateIn colorText"><i class="fa fa-bars nav-link"></i></a>
+            <a routerLink="/">
+                <img src="assets/images/luxo-logo.png" height="60" class="d-inline-block align-top wow fadeInLeft" alt="">
+            </a>
+        </logo>
+
+        <links>
+            <ul class="navbar-nav ml-5 wow fadeInRight">
+                <li class="nav-item ml-md-4 waves-light" mdbWavesEffect>
+                    <a routerLink="/" class="nav-link hoverMenu">HOME </a>
+                </li>
+                <li class="nav-item waves-light" mdbWavesEffect>
+                    <a class="nav-link hoverMenu" routerLink="/booking">BOOKING</a>
+                </li>
+                <li class="nav-item waves-light" mdbWavesEffect>
+                    <div *ngIf="!isLogin; then elseBlock"></div>
+                    <ng-template #elseBlock> <a class="nav-link hoverMenu" (click)="openLoginModal()">LOGIN</a></ng-template>
+                </li>
+                <li class="nav-item waves-light" mdbWavesEffect>
+                    <div *ngIf="isLogin; then thenB else elseB"></div>
+                    <ng-template #thenB><a class="nav-link hoverMenu" (click)="logout()">LOGOUT</a></ng-template>
+                    <ng-template #elseB><a class="nav-link hoverMenu" (click)="openRegistrationModal()">SIGN UP</a></ng-template>
+
+
+                </li>
+            </ul>
+            <h4 class="phone wow pulse infinite"><i class="fa fa-phone "></i>&nbsp;&nbsp;&nbsp;+61 452 622 391</h4>
+        </links>
+
+
+    </mdb-navbar>
+</header>

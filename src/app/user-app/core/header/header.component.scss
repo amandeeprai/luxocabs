@@ -1,0 +1,25 @@
+.colorText{
+    color: #fff !important;
+}
+.hoverMenu{
+    font-size: 15px;
+}
+.hoverMenu:hover{
+    background: transparent;
+    border: 2px solid #fff;
+    border-radius: 25px;
+    font-size: 14px;
+}
+.phone{
+    float: right;
+    color: #fff;
+    margin-left: 400px;
+    font-weight: 400;
+    font-size: 15px;
+}
+
+::ng-deep mdb-navbar .scrolling-navbar {
+    
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+}

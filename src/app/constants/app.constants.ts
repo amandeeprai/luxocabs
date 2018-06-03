@@ -1,0 +1,12 @@
+export const APP_CONSTANT = {
+    REGION_TYPE: "REGION",
+    LOCATION_TYPE: "LOCATION",
+    DAYFARE: "DAY FARE",
+    OVERNIGHT_FARE: "OVERNIGHT FARE",
+    PEAK_FARE: "PEAK FARE",
+    FROM_AIRPORT: "From Airport",
+    TO_AIRPORT: "To Airport",
+    POINT_TO_POINT: "Point to Point",
+    LOCALSTORAGE_USERINFO_KEY: "ui",
+    LOCALSTORAGE_TOKEN_KEY: "ti"
+}

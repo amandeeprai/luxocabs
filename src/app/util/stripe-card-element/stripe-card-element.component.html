@@ -1,0 +1,14 @@
+<div class="row justify-content-md-center">
+    <div class="col-md-6 cardColor p-3 ">
+        <h5 class="header">Credit Card or Debit Card</h5>
+        <form novalidate (ngSubmit)="buy()" [formGroup]="stripeTest">
+            <h6 class="textName">Enter your Card Number</h6>
+            <ngx-stripe-card [options]="cardOptions" [elementsOptions]="elementsOptions"></ngx-stripe-card>
+            <h6 class="textName"> Name on Card</h6>
+            <input class="nameInput" type="text" formControlName="name" placeholder="Jane Doe">
+            <button class="btn btn-primary floatRight" type="submit">
+                        BUY
+            </button>
+        </form>
+    </div>
+</div>

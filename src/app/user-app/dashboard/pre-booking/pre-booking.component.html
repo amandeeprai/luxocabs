@@ -1,0 +1,350 @@
+<app-alert></app-alert>
+<div class="container top-margin">
+    <mat-horizontal-stepper [linear]="true" #stepper>
+        <mat-step [completed]="rideInfoFormCompleted" [stepControl]="rideInfoForm">
+            <app-ride-info-form [rideInfoForm]="rideInfoForm" (checkFareEvent)="checkFare($event)"></app-ride-info-form>
+        </mat-step>
+        <mat-step>
+            <div class="container">
+                <ng-template matStepLabel>Select Vehicle</ng-template>
+                <div class="workBox">
+                    <section class="py-4">
+                        <div class="row" *ngFor="let cabFare of cabFaresModel.finalFareList">
+                            <div class="col-lg-5 col-xl-4 mb-4">
+                                <div class="view overlay rounded z-depth-1-half waves-light" mdbWavesEffect>
+                                    <img src="assets/images/{{cabFare.imgURL}}.jpg" class="img-fluid" alt="First sample image">
+                                    <a>
+                                        <div class="mask rgba-white-slight"></div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-7 col-xl-7 ml-xl-4 mb-4">
+                                <h3 class="mb-3 font-weight-bold dark-grey-text">
+                                    <strong>{{cabFare.cabName}}</strong>
+                                </h3>
+                                <h6>Number of passengers it can hold : {{cabFare.limit}}</h6>
+                                <h6><b>Estimated fare ${{cabFare.totalFare}}</b></h6>
+                                <p class="grey-text">Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere..
+                                </p>
+                                <button (click)="selectCab(cabFare)" class="btn btn-primary  btn-md waves-light"> Book Now</button>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </mat-step>
+        <mat-step >
+            <ng-template matStepLabel>Fares</ng-template>
+            <div class="row workBox justify-content-md-center">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="row ">
+                        <div class="col-md-8 offset-md-2 ">
+                            <p class="h5 text-center mb-5">Trip Summary</p>
+                            <ul class="list-group fare-details">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span class="font-weight-bold">Pick-up Date</span>
+                                    <span class=""> {{finalRideInfo.pickupDate}}</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span class="font-weight-bold">Pick-up Time</span>
+                                    <span class=""> {{finalRideInfo.pickupTime}}</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span class="font-weight-bold"> Pick-up</span>
+                                    <span class=""> {{finalRideInfo.pickupAddress}}</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span class="font-weight-bold"> Drop-off</span>
+                                    <span class=""> {{finalRideInfo.destinationAddress}}</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span class="font-weight-bold"> No of Passengers</span>
+                                    <span class=""> {{finalCabFare.limit}}</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <hr>
+                        <div class="col-md-6 mt-5" style="border-right: 1px solid #ccc;">
+                            <p class="h5 text-center mb-4">User Details</p>
+                            <mat-form-field class="fullWidth">
+                                <input name="firstName" [(ngModel)]="userInfo.firstName" matInput placeholder="First Name" required>
+                                <i class="fa fa-user prefix grey-text" matSuffix></i>
+                            </mat-form-field>
+                            <mat-form-field class="fullWidth">
+                                <input name="lastName" [(ngModel)]="userInfo.lastName" matInput placeholder="Last Name" required>
+                                <i class="fa fa-user prefix grey-text" matSuffix></i>
+                            </mat-form-field>
+                            <mat-form-field class="fullWidth">
+                                <input name="email" [(ngModel)]="userInfo.email" matInput placeholder="Email" required>
+                                <i class="fa fa-envelope prefix grey-text" matSuffix></i>
+                            </mat-form-field>
+                            <mat-form-field class="fullWidth">
+                                <input name="phoneNumber" [(ngModel)]="userInfo.phoneNumber" matInput placeholder="Mobile Number" required>
+                                <i class="fa fa-phone prefix grey-text" matSuffix></i>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-6 mt-5">
+                            <p class="h5 text-center mb-4">Fare Details</p>
+                            <ul class="list-group fare-details">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span class="font-weight-bold">Vehicle Type</span>
+                                    <span class="">{{finalCabFare.cabName}}</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span class="font-weight-bold">Total Distance</span>
+                                    <span class=""> {{finalRideInfo.totalDistance}}</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span class="font-weight-bold"> Service Fees</span>
+                                    <span class=""> {{finalCabFare.serviceFee}} %</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span class="font-weight-bold"> Total Fare</span>
+                                    <span class="">  $ {{finalCabFare.totalFare}}</span>
+                                </li>
+                            </ul>
+
+                        </div>
+
+                    </div>
+
+
+                    <!--
+                    <mat-vertical-stepper #stepper>
+                        <mat-step [stepControl]="firstFormGroup">
+                            <ng-template matStepLabel>User Details</ng-template>
+                            <div class="row ">
+                                <div class="col-md-6">
+                                    <p class="h5 text-center mb-4">User Details</p>
+                                    <mat-form-field class="fullWidth">
+                                        <input name="firstName" [(ngModel)]="userInfo.firstName" matInput placeholder="First Name" required>
+                                        <i class="fa fa-user prefix grey-text" matSuffix></i>
+                                    </mat-form-field>
+                                    <mat-form-field class="fullWidth">
+                                        <input name="lastName" [(ngModel)]="userInfo.lastName" matInput placeholder="Last Name" required>
+                                        <i class="fa fa-user prefix grey-text" matSuffix></i>
+                                    </mat-form-field>
+                                    <mat-form-field class="fullWidth">
+                                        <input name="email" [(ngModel)]="userInfo.email" matInput placeholder="Email" required>
+                                        <i class="fa fa-envelope prefix grey-text" matSuffix></i>
+                                    </mat-form-field>
+                                    <mat-form-field class="fullWidth">
+                                        <input name="phoneNumber" [(ngModel)]="userInfo.phoneNumber" matInput placeholder="Mobile Number" required>
+                                        <i class="fa fa-phone prefix grey-text" matSuffix></i>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+                        </mat-step>
+                        <mat-step [stepControl]="secondFormGroup">
+                            <ng-template matStepLabel>Fare Details</ng-template>
+                            <div class="row  list">
+                                <div class="col-md-6">
+                                    Vehicle Type
+                                </div>
+                                <div class="col-md-6">
+                                    {{finalCabFare.cabName}}
+                                </div>
+                            </div>
+                            <div class="row  details">
+                                <div class="col-md-6">
+                                    Total Distance
+                                </div>
+                                <div class="col-md-6">
+                                    {{finalRideInfo.totalDistance}}
+                                </div>
+                            </div>
+                            <div class="row  details">
+                                <div class="col-md-6">
+                                    Service Fees
+                                </div>
+                                <div class="col-md-6">
+                                    {{finalCabFare.serviceFee}} %
+                                </div>
+                            </div>
+                            <div class="row  details ">
+                                <div class="col-md-6">
+                                    Total Fare
+                                </div>
+                                <div class="col-md-6">
+                                    $ {{finalCabFare.totalFare}}
+                                </div>
+                            </div>
+                        </mat-step>
+                        <mat-step>
+                            <ng-template matStepLabel>Trip Summary</ng-template>
+                            <div class="row  details">
+                                <div class="col-md-4">
+                                    Pick-up Date
+                                </div>
+                                <div class="col-md-8">
+                                    {{finalRideInfo.pickupDate}}
+                                </div>
+                            </div>
+                            <div class="row  details">
+                                <div class="col-md-4">
+                                    Pick-up Time
+                                </div>
+                                <div class="col-md-8">
+                                    {{finalRideInfo.pickupTime}}
+                                </div>
+                            </div>
+
+                            <div class="row  details">
+                                <div class="col-md-4">
+                                    Pick-up
+                                </div>
+                                <div class="col-md-8">
+                                    {{finalRideInfo.pickupAddress}}
+                                </div>
+                            </div>
+
+                            <div class="row  details">
+                                <div class="col-md-4">
+                                    Drop-off
+                                </div>
+                                <div class="col-md-8">
+                                    {{finalRideInfo.destinationAddress}}
+                                </div>
+                            </div>
+
+                            <div class="row  details">
+                                <div class="col-md-4">
+                                    No of Passengers
+                                </div>
+                                <div class="col-md-8">
+                                    {{finalCabFare.limit}}
+                                </div>
+                            </div>
+
+
+                        </mat-step>
+                    </mat-vertical-stepper>
+-->
+                    <button class="btn btn-primary float-right" (click)="openStripeModal()"> Pay Now</button>
+                    <button class="btn btn-primary float-right" (click)="payLater()"> Pay Later</button>
+
+                </div>
+            </div>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Booking Info</ng-template>
+            <div class="row  justify-content-md-center">
+
+                <!--Grid column-->
+                <div class="col-md-12">
+                    <div class="card card-image" style="background-image: url(https://c1.staticflickr.com/8/7241/7313144354_1e915210c5_b.jpg);">
+                        <div class="text-white rgba-black-strong py-5 px-4 rounded">
+                            <div>
+                                <h2 class="  text-center ">
+                                    <i class="fa fa-check-circle fa-2x green-text"></i>
+
+                                </h2>
+                                <h3 class="py-3 font-weight-bold green-text  text-center ">
+                                    <strong>Your Booking is done</strong>
+                                </h3>
+                                <div class="col-md-8 offset-md-2">
+
+
+                                    <ul class="list-group">
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <span class="font-weight-bold"><i class="fa fa-user fa-lg" aria-hidden="true"></i> Name </span>
+                                            <span class="">{{newBooking.firstName}} {{newBooking.lastName}}</span>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <span class="font-weight-bold"><i class="fa fa-mobile fa-lg" aria-hidden="true"></i> Phone Number </span>
+                                            <span class="">{{newBooking.phoneNumber}}</span>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <span class="font-weight-bold"><i class="fa fa-street-view fa-lg" aria-hidden="true"></i> Pickup Address </span>
+                                            <span class="">{{newBooking.pickupAddress}}</span>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <span class="font-weight-bold"><i class="fa fa-map-signs fa-lg" aria-hidden="true"></i> Drop Address </span>
+                                            <span class="">{{newBooking.destinationAddress}}</span>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <span class="font-weight-bold"> <i class="fa fa-calendar fa-lg" aria-hidden="true"></i> Pickup Date </span>
+                                            <span class="">{{newBooking.pickupDate | date}}</span>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <span class="font-weight-bold"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i>  Pickup time</span>
+                                            <span class="">{{newBooking.pickupTime}}</span>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <span class="font-weight-bold"><i class="fa fa-car fa-lg" aria-hidden="true"></i>  Cab Name</span>
+                                            <span class="">{{newBooking.cabName}}</span>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <span class="font-weight-bold"><i class="fa fa-users fa-lg" aria-hidden="true"></i>  No. of passengers</span>
+                                            <span class="">{{newBooking.passengers}}</span>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <span class="font-weight-bold"><i class="fa fa-money fa-lg" aria-hidden="true"></i>  Total Fare</span>
+                                            <span class=""><i class="fa fa-usd " aria-hidden="true"></i>{{newBooking.totalFare}}</span>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <span class="font-weight-bold"><i class="fa fa-credit-card fa-lg" aria-hidden="true"></i>  Payment Mode</span>
+                                            <span class="">{{newBooking.paymentMode}}</span>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <span class="font-weight-bold"><i class="fa fa-hourglass-half fa-lg" aria-hidden="true"></i>  Payment Status</span>
+                                            <span class="">{{newBooking.payStatus}}</span>
+                                        </li>
+                                        
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <span class="font-weight-bold"><i class="fa fa-calendar-check-o fa-lg" aria-hidden="true"></i>  Booking Date</span>
+                                            <span class="">{{newBooking.bookingDate | date}}</span>
+                                        </li>
+
+                                    </ul>
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Grid column-->
+                <!--
+
+                <div class="col-5">
+
+                    <h2 class="py-3" style="text-align: center; color: green;padding: 2%;">Your Booking is done</h2>
+
+
+
+                    <table>
+                        <tr style="background: #ccc8c8;">
+                            <th class="tablepadding">Pickup Address </th>
+                            <td class="tablepadding">: </td>
+                            <td class="tablepadding"> {{finalRideInfo.pickupAddress}}</td>
+                        </tr>
+                        <tr style="background: #ece5d2;">
+                            <th class="tablepadding">Drop Address </th>
+                            <td class="tablepadding">: </td>
+                            <td class="tablepadding"> {{finalRideInfo.destinationAddress}}</td>
+                        </tr>
+                        <tr style="background: #ccc8c8;">
+                            <th class="tablepadding">Pickup Date </th>
+                            <td class="tablepadding">: </td>
+                            <td class="tablepadding"> {{finalRideInfo.pickupDate}}</td>
+                        </tr>
+                        <tr style="background: #ece5d2;">
+                            <th class="tablepadding">Pickup time </th>
+                            <td class="tablepadding">: </td>
+                            <td class="tablepadding"> {{finalRideInfo.pickupTime}}</td>
+                        </tr>
+                    </table>
+
+                </div>
+                -->
+            </div>
+        </mat-step>
+
+    </mat-horizontal-stepper>
+
+    <!-- <app-stripe-element></app-stripe-element> -->
+
+</div>

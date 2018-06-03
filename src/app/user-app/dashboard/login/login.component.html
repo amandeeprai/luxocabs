@@ -1,0 +1,55 @@
+<app-alert></app-alert>
+<div class="row">
+    <div class="col-md-6 col-sm-12 leftBox">
+
+    </div>
+    <div class="col-md-6 col-sm-12">
+        <ng-template [ngIf]="dashboardConstant.LOGIN_FORM_SCREEN == screen">
+            <button class="closeButton" [mat-dialog-close]="true">x</button>
+            <div class="box">
+                <h4 class="header m-0">Login to Luxocabs</h4>
+                <div mat-dialog-content>
+                    <form #loginForm="ngForm">
+                        <div class="row mt-4">
+                            <div class="col-md-2 col-sm-2 col-xs-2 mt-2">
+                                <i class="fa fa-stack-2x fa-mobile img-fluid"></i>
+                            </div>
+                            <div class="col-md-10 col-sm-10 col-xs-10">
+                                <mat-form-field class="fullWidth">
+                                    <input name="phoneNumber" class="inputWidth" [(ngModel)]="userInfo.phoneNumber" matInput placeholder="Mobile Number" required>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div id="recaptcha-container"></div>
+                        <div>
+
+                            <button class="sendButton" mat-raised-button color="primary" *ngIf="showSendOTPButton" [disabled]="loginForm.invalid" (click)="verifyPhoneNumber()">
+                                                          Send OTP
+                                                      </button><br><br>
+                            <small class="ml-3">
+                                                            By logging in, you agree to our Terms & Conditions & Privacy Policy.
+                                                    </small><br>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </ng-template>
+        <ng-template [ngIf]="dashboardConstant.OTP_FORM_SCREEN == screen">
+                <button class="closeButton" [mat-dialog-close]="true">x</button>
+            <div class="box">
+                <h4 class="header m-0">Verify OTP</h4>
+                <div mat-dialog-content>
+                    <div>
+                        <mat-form-field  class="fullWidth">
+                            <input name="otp" [(ngModel)]="otp" matInput placeholder="Enter OTP" required>
+                        </mat-form-field>
+                        <button class="sendButton" mat-raised-button color="primary"  (click)="submitOTP(otp)">
+                                      <span style="font-size:13px; padding-left:10px">Submit OTP</span>
+                                  </button>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </div>
+</div>

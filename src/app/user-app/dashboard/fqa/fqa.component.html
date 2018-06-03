@@ -1,0 +1,11 @@
+<div class="container top-margin">
+  <div class="box">
+      <h2 class="h2 text-center" > Frequently Asked Questions</h2>
+      <mdb-squeezebox [multiple]="false" aria-multiselectable="true">
+          <mdb-item  *ngFor="let item of itemsList">
+              <mdb-item-head> {{ item.title }} </mdb-item-head>
+              <mdb-item-body> {{ item.description }} </mdb-item-body>
+          </mdb-item>
+      </mdb-squeezebox>
+  </div>
+</div>

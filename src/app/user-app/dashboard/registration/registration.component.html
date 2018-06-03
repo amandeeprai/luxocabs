@@ -1,0 +1,47 @@
+<app-alert></app-alert>
+<div class="row">
+    <div class="col-md-6 col-sm-12 leftBox">
+
+    </div>
+    <div class="col-md-6 col-sm-12 box">
+        <ng-template class="" [ngIf]="dashboardConstant.SIGNUP_FORM_SCREEN == screen">
+            <div mat-dialog-content>
+                <button class="closeButton" [mat-dialog-close]="true">x</button>
+                <h4 class="header">Sign Up</h4>
+                <form #signupForm="ngForm">
+                    <mat-form-field class="fullWidth">
+                        <input name="firstName" [(ngModel)]="userInfo.firstName" matInput placeholder="First Name" required>
+                    </mat-form-field>
+                    <mat-form-field class="fullWidth">
+                        <input name="lastName" [(ngModel)]="userInfo.lastName" matInput placeholder="Last Name" required>
+                    </mat-form-field>
+                    <mat-form-field class="fullWidth">
+                        <input name="email" [(ngModel)]="userInfo.email" matInput placeholder="Email" required>
+                    </mat-form-field>
+                    <mat-form-field class="fullWidth">
+                        <input name="phoneNumber" [(ngModel)]="userInfo.phoneNumber" matInput placeholder="Mobile Number" required>
+                    </mat-form-field>
+                    <div id="recaptcha-container"></div>
+                    <div>
+                        <button mat-raised-button color="primary" *ngIf="showSendOTPButton" [disabled]="signupForm.invalid" (click)="verifyPhoneNumber()">
+                            Send OTP
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </ng-template>
+        <ng-template [ngIf]="dashboardConstant.OTP_FORM_SCREEN == screen">
+            <div mat-dialog-content>
+                <div>
+                    <h4 class="header">Verify Mobile Number</h4>
+                    <mat-form-field class="fullWidth">
+                        <input name="otp" [(ngModel)]="otp" matInput placeholder="Enter OTP" required>
+                    </mat-form-field>
+                    <button mat-raised-button color="primary" (click)="submitOTP(otp)">
+                        <span style="font-size:13px; padding-left:10px">Submit OTP</span>
+                    </button>
+                </div>
+            </div>
+        </ng-template>
+    </div>
+</div>

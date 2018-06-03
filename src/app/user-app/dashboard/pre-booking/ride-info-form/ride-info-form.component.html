@@ -1,0 +1,42 @@
+<app-alert></app-alert>
+<div class="row mb-2">
+    <div class="col example-container">
+        <form [formGroup]="rideInfoForm">
+            <ng-template matStepLabel>Ride Info</ng-template>
+            <mat-form-field class="input-full-width">
+                <input formControlName="pickupLocation" matInput id="origin-input" #originInput type="text" placeholder="Enter Pick-Up Location">
+            </mat-form-field>
+            <mat-form-field class="input-full-width">
+                <input formControlName="destinationLocation" matInput id="destination-input" #destinationInput type="text" placeholder="Enter Destination Location">
+            </mat-form-field>
+            <mat-form-field class="input-full-width">
+                <mat-select formControlName="passengers" placeholder="Number of Passengers">
+                    <mat-option *ngFor="let passenger of numberOfPassengers" [value]="passenger">
+                        {{ passenger }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="input-full-width">
+                <input formControlName="pickupDate" matInput [matDatepicker]="pickupDatePicker" placeholder="Choose Pick-Up Date">
+                <mat-datepicker-toggle matSuffix [for]="pickupDatePicker"></mat-datepicker-toggle>
+                <mat-datepicker #pickupDatePicker></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field class="input-full-width">
+                <input formControlName="pickupTime" matInput type='time' required placeholder="Choose Pick-Up Time">
+            </mat-form-field>
+            <mat-form-field class="input-full-width">
+                <mat-select formControlName="serviceType" placeholder="Select Service Type">
+                    <mat-option *ngFor="let serviceType of serviceTypes" [value]="serviceType">
+                        {{ serviceType }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <div>
+                <button class="btn-primary" mat-button (click)="searchCabs()">Next</button>
+            </div>
+        </form>
+    </div>
+    <div class="col">
+        <div #distanceMap id="map"></div>
+    </div>
+</div>

@@ -1,0 +1,77 @@
+<app-alert></app-alert>
+<div class="container top-margin">
+
+<form class="form-container" #fareForm="ngForm">
+    <mat-form-field>
+        <input type="number" name="flagFallFare" matInput [(ngModel)]="fareModel.flagFallFare" placeholder="Flag Fall Fare">
+    </mat-form-field>
+    <mat-form-field>
+        <input type="number" name="distanceFare" matInput [(ngModel)]="fareModel.distanceFare" placeholder="Distance Fare">
+    </mat-form-field>
+    <mat-form-field>
+        <input type="number" name="bookingFees" matInput [(ngModel)]="fareModel.bookingFees" placeholder="Booking Fees">
+    </mat-form-field>
+    <mat-form-field>
+        <input type="number" name="maxiTaxiFare" matInput [(ngModel)]="fareModel.maxiTaxiFare" placeholder="Maxi Taxi Fare">
+    </mat-form-field>
+    <mat-form-field>
+        <input type="number" name="premiumServiceCharge" matInput [(ngModel)]="fareModel.premiumServiceCharge" placeholder="Premium Service Charge">
+    </mat-form-field>
+    <mat-form-field>
+        <input type="number" name="pickupFromAirportCharge" matInput [(ngModel)]="fareModel.pickupFromAirportCharge" placeholder="Pickup from airport charge">
+    </mat-form-field>
+    <mat-form-field>
+        <input type="number" name="gstOnElectronicPayment" matInput [(ngModel)]="fareModel.gstOnElectronicPayment" placeholder="GST on Electronic Payment">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-select [(ngModel)]="fareModel.fareType" name="fareType" placeholder="Fare Type">
+            <mat-option *ngFor="let fareType of fareTypes" [value]="fareType">
+                {{ fareType }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <button *ngIf='!fareModel._id' mat-raised-button color="primary" (click)="onSubmit()">Create Fare</button>
+    <button *ngIf='fareModel._id' mat-raised-button color="primary" (click)="updateFare()">Update Fare</button>
+    <button *ngIf='fareModel._id' mat-raised-button color="warn" (click)="cancel()">Cancel</button>
+</form>
+
+<div class="table-container mat-elevation-z8">
+    <mat-table #table [dataSource]="dataSource">
+        <ng-container matColumnDef="_id">
+            <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element._id}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="flagFallFare">
+            <mat-header-cell *matHeaderCellDef> Falg Fall </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.flagFallFare}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="distanceFare">
+            <mat-header-cell *matHeaderCellDef> Distance Fare </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.distanceFare}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="fareType">
+            <mat-header-cell *matHeaderCellDef> Fare Type </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.fareType}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="operation">
+            <mat-header-cell *matHeaderCellDef> Operation </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                <button mat-icon-button (click)="editFare(element)"> 
+                  <mat-icon>edit</mat-icon>  
+                </button>
+            </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+    <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]">
+    </mat-paginator>
+</div>
+</div>

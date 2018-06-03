@@ -1,0 +1,23 @@
+.textYellow{
+    color: yellow;
+}
+.textWhite{
+    color: white;
+}
+.borderBottom{
+    border-bottom: 1px solid #fff;
+}
+.bottomLink{
+    font-weight: 300;
+}
+.bottomLink:hover{
+    color: yellow;
+}
+.bottomBox:hover .bottomBoxHover{
+    border-bottom: 1.5px solid yellow;
+}
+.bottomBoxHover{
+    font-weight: 300;
+    padding-bottom:5px; 
+    border-bottom: 1.5px solid white;
+}
